@@ -6,3 +6,7 @@
 	path = Modules/miniPrintf
 	url = https://github.com/Tellicious/STM32-miniPrintf
 	branch = main
+[submodule "Modules/smartLED"]
+	path = Modules/smartLED
+	url = https://github.com/Tellicious/STM32-smartLED
+	branch = main

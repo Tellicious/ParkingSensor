@@ -55,7 +55,7 @@ target_sources(
 )
 
 # Link libraries
-target_link_libraries(${TARGET_NAME} stm32cubemx ADVUtils miniPrintf)
+target_link_libraries(${TARGET_NAME} stm32cubemx ADVUtils miniPrintf smartLED)
 
 # Execute post-build to print size, generate hex and bin
 add_custom_command(
