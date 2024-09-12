@@ -1,0 +1,8 @@
+[submodule "Modules/Utils"]
+	path = Modules/Utils
+	url = https://github.com/Tellicious/ADV-utils
+	branch = main
+[submodule "Modules/miniPrintf"]
+	path = Modules/miniPrintf
+	url = https://github.com/Tellicious/STM32-miniPrintf
+	branch = main

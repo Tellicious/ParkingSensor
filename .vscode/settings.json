@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.c": "c",
+    },
+    "cortex-debug.liveWatchRefreshRate": 500
+}

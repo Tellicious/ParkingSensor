@@ -3,36 +3,30 @@ function(create_target CONFIG_TYPE)
 
 # Set name of target
 set(TARGET_NAME ${PROJECT_NAME})
-string(FIND ${CONFIG_TYPE} Debug pos)
-if(NOT ${pos} EQUAL -1)
-    string(REPLACE Debug "" C_NAME ${CONFIG_TYPE})
-    string(APPEND TARGET_NAME _D_${C_NAME})
-else()
-    string(REPLACE Release "" C_NAME ${CONFIG_TYPE})
-    string(APPEND TARGET_NAME _${C_NAME})
-endif()
 
 # Add executable
 add_executable(${TARGET_NAME})
 
 # Sources
 set(sources_SRCS
-    Drivers/BSP/SX1278/SX1278.c
+    Drivers/BSP/src/eeprom.c
+    Drivers/BSP/VL53L1X/src/vl53l1_platform.c
+    Drivers/BSP/VL53L1X/src/VL53L1X_api.c
+    Drivers/BSP/VL53L1X/src/VL53L1X_calibration.c
 )
 
 # Include directories for all compilers
 set(include_DIRS
-    ${PROJECT_SOURCE_DIR}/Drivers/BSP/SX1278
+    Drivers/BSP/inc
+    Drivers/BSP/VL53L1X/inc
 )
 
 # Linker script
-set(linker_script_SRC ${PROJECT_SOURCE_DIR}/STM32F103C8TX_FLASH.ld)
+set(linker_script_SRC ${PROJECT_SOURCE_DIR}/STM32F103C8Tx_FLASH.ld)
 
 target_compile_definitions(
     ${TARGET_NAME} PRIVATE
     ${user_DEFS}
-    $<$<OR:$<STREQUAL:${CONFIG_TYPE},DebugMain>,$<STREQUAL:${CONFIG_TYPE},ReleaseMain>>:modeMAIN>
-    $<$<OR:$<STREQUAL:${CONFIG_TYPE},DebugRemote>,$<STREQUAL:${CONFIG_TYPE},ReleaseRemote>>:modeREMOTE>
 )
 
 target_include_directories(
@@ -61,7 +55,7 @@ target_sources(
 )
 
 # Link libraries
-target_link_libraries(${TARGET_NAME} stm32cubemx ADVUtils debugPrintf)
+target_link_libraries(${TARGET_NAME} stm32cubemx ADVUtils miniPrintf)
 
 # Execute post-build to print size, generate hex and bin
 add_custom_command(

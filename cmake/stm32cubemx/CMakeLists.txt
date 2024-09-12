@@ -9,6 +9,7 @@ enable_language(C ASM)
 target_compile_definitions(stm32cubemx INTERFACE 
 	USE_HAL_DRIVER 
 	STM32F103xB
+    $<$<CONFIG:Debug>:DEBUG>
 )
 
 target_include_directories(stm32cubemx INTERFACE
@@ -22,13 +23,14 @@ target_include_directories(stm32cubemx INTERFACE
 target_sources(stm32cubemx INTERFACE
     ../../Core/Src/main.c
     ../../Core/Src/gpio.c
-    ../../Core/Src/iwdg.c
-    ../../Core/Src/spi.c
+    ../../Core/Src/dma.c
+    ../../Core/Src/i2c.c
+    ../../Core/Src/tim.c
     ../../Core/Src/usart.c
     ../../Core/Src/stm32f1xx_it.c
     ../../Core/Src/stm32f1xx_hal_msp.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
-    ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_iwdg.c
+    ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
@@ -39,7 +41,6 @@ target_sources(stm32cubemx INTERFACE
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
-    ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c
     ../../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
