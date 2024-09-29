@@ -63,8 +63,7 @@ typedef enum {
 /* USER CODE BEGIN PV */
 /* Objects */
 button_t userBtn;
-
-userTimer_t timerButton, timerLED, timerBrightness, timerMeasure;
+userTimer_t timerButton, timerBrightness, timerMeasure;
 smartLED_t LEDstrip;
 VL53L1_Dev_t VL53L1X_dev;
 movingAvg_t _distMovAvg, _appSpeedMovAvg;
@@ -75,6 +74,7 @@ uint16_t VirtAddVarTab[NB_OF_VAR] = {1, 2};
 /* Distance measurement */
 uint16_t measStopCnt = 0, measStartCnt = 0;
 uint16_t actualDistance = 0, targetDistance = 1000, previousDistance = 0;
+uint8_t blink = 0;
 /* LED brightness control */
 int8_t brightnessDir = 2;
 uint16_t brightnessSaveCnt = 0, brightnessBlinkCnt = 0;
@@ -132,7 +132,6 @@ int main(void) {
 
     /* Timers initialization */
     timerInit(&timerButton, configTIMER_BUTTON_MS);
-    timerInit(&timerLED, configTIMER_LED_MS);
     timerInit(&timerBrightness, configTIMER_BRIGHTNESS_MS);
     timerInit(&timerMeasure, configTIMER_MEASURE_MS);
 
@@ -203,7 +202,6 @@ int main(void) {
     }
 
     //TODO test if I need to raise LED pin high to reduce power consumption
-    int ledIdx = 0;
     /* USER CODE END 2 */
 
     /* Infinite loop */
@@ -231,28 +229,6 @@ int main(void) {
                 /* Save target distance */
                 targetDistance = actualDistance;
                 EE_WriteVariable(2, targetDistance);
-            } else if (buttonPress == BUTTON_SHORT_PRESS) {
-                miniPrintf("ButtonShortPress\n");
-                timerStart(&timerLED, HAL_GetTick());
-            }
-        }
-
-        /* LED Control loop */
-        if (timerEventExists(&timerLED)) {
-            timerClear(&timerLED);
-            if (ledIdx >= configLED_NUMBER) {
-                ledIdx = 0;
-                timerStop(&timerLED);
-                smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
-                while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
-                    HAL_Delay(10);
-                }
-            } else {
-                smartLED_updateRGBColors(&LEDstrip, ledIdx, 0, 255, 0);
-                ledIdx++;
-                while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
-                    HAL_Delay(10);
-                }
             }
         }
 
@@ -363,8 +339,8 @@ int main(void) {
                     if (status == STATUS_RUNNING) {
                         if (actualDistance <= (targetDistance + configMIN_DISTANCE_MM)) {
                             /* Show solid red light */
-                            //TODO make it blink
-                            smartLED_updateAllRGBColors(&LEDstrip, 0xFF, 0, 0);
+                            blink = ~blink;
+                            smartLED_updateAllRGBColors(&LEDstrip, blink, 0, 0);
                             smartLED_startTransfer(&LEDstrip);
                         } else {
                             /* Show decreasing green bar */
@@ -441,7 +417,6 @@ void SystemClock_Config(void) {
 void HAL_SYSTICK_Callback(void) {
     /* Process user timer(s) */
     timerProcess(&timerButton, HAL_GetTick());
-    timerProcess(&timerLED, HAL_GetTick());
     timerProcess(&timerBrightness, HAL_GetTick());
     timerProcess(&timerMeasure, HAL_GetTick());
 }
