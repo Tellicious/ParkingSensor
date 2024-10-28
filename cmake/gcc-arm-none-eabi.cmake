@@ -16,7 +16,7 @@ endif()
 list(LENGTH TOOLCHAIN_DIRECTORIES TOOLCHAIN_DIRECTORIES_COUNT)
 
 if(TOOLCHAIN_DIRECTORIES_COUNT LESS 1)
-    message(WARNING "Could not find an STM32CubeIDE installation. Falling back to tools available on PATH.")
+    message(STATUS "Could not find an STM32CubeIDE installation. Falling back to tools available on PATH.")
 else()
     list(GET TOOLCHAIN_DIRECTORIES -1 TOOLCHAIN_DIRECTORY)
     if (TOOLCHAIN_DIRECTORIES_COUNT GREATER 1)
