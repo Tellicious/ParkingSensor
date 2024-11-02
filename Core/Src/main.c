@@ -127,8 +127,7 @@ int main(void) {
     /* USER CODE BEGIN 2 */
 
     /* Button initialization */
-    buttonInit(&userBtn, BUTTON_TYPE_NORMAL, configBUTTON_DEBOUNCING_MS, configBUTTON_RESET_MS,
-               configBUTTON_LONGPRESS_MS, configBUTTON_VERYLONGPRESS_MS);
+    buttonInit(&userBtn, BUTTON_TYPE_NORMAL, configBUTTON_DEBOUNCING_MS, configBUTTON_RESET_MS, configBUTTON_LONGPRESS_MS, configBUTTON_VERYLONGPRESS_MS);
 
     /* Timers initialization */
     timerInit(&timerButton, configTIMER_BUTTON_MS);
@@ -160,11 +159,9 @@ int main(void) {
         HAL_Delay(2);
     }
     VL53L1X_SensorInit(VL53L1X_dev);
-    VL53L1X_SetDistanceMode(VL53L1X_dev, 2); /* 1=short, 2=long */
-    VL53L1X_SetTimingBudgetInMs(
-        VL53L1X_dev, configLIDAR_TIMING_BUDGET_MS); /* in ms possible values [15, 20, 33, 50, 100(default), 200, 500] */
-    VL53L1X_SetInterMeasurementInMs(VL53L1X_dev,
-                                    configLIDAR_IM_TIME_MS); /* in ms, IM must be >= TB+ 5ms, otherwise IM*2 */
+    VL53L1X_SetDistanceMode(VL53L1X_dev, 2);                                /* 1=short, 2=long */
+    VL53L1X_SetTimingBudgetInMs(VL53L1X_dev, configLIDAR_TIMING_BUDGET_MS); /* in ms possible values [15, 20, 33, 50, 100(default), 200, 500] */
+    VL53L1X_SetInterMeasurementInMs(VL53L1X_dev, configLIDAR_IM_TIME_MS);   /* in ms, IM must be >= TB+ 5ms, otherwise IM*2 */
     //VL53L1X_SetOffset(VL53L1X_dev,20); /* offset compensation in mm */
     //VL53L1X_SetXtalk(VL53L1X_dev, &xtalk);
     VL53L1X_SetROI(VL53L1X_dev, 16, 16); /* minimum ROI 4,4 */
@@ -290,8 +287,7 @@ int main(void) {
                 if ((VL53L1X_dev.rangeStatus == 0) || (VL53L1X_dev.rangeStatus == 7)) {
                     previousDistance = actualDistance;
                     actualDistance = (uint16_t)roundf(movingAvgCalc(&_distMovAvg, VL53L1X_dev.distance));
-                    float appSpeed = movingAvgCalc(&_appSpeedMovAvg,
-                                                   (actualDistance - previousDistance) * 1e3 / configTIMER_MEASURE_MS);
+                    float appSpeed = movingAvgCalc(&_appSpeedMovAvg, (actualDistance - previousDistance) * 1e3 / configTIMER_MEASURE_MS);
                     miniPrintf(">TDist:%d\n>CDist:%d\n", targetDistance, actualDistance);
 
                     /* Finite state machine */
@@ -346,8 +342,7 @@ int main(void) {
                             /* Show decreasing green bar */
                             uint16_t LEDnr = (uint16_t)(roundf(
                                 configLED_NUMBER
-                                * fminf((float)(actualDistance - targetDistance - configMIN_DISTANCE_MM)
-                                            / (configMEASURING_RANGE_MM - configMIN_DISTANCE_MM),
+                                * fminf((float)(actualDistance - targetDistance - configMIN_DISTANCE_MM) / (configMEASURING_RANGE_MM - configMIN_DISTANCE_MM),
                                         1)));
                             for (uint16_t ii = 0; ii < configLED_NUMBER; ii++) {
                                 smartLED_updateColor(&LEDstrip, ii, SMARTLED_GREEN, (ii < LEDnr) ? 0xFF : 0);
