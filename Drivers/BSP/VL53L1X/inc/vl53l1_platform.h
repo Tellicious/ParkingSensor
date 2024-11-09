@@ -14,13 +14,7 @@ extern "C" {
 
 typedef struct {
     uint8_t I2cDevAddr;
-    uint8_t drdy;
-    uint8_t rangeStatus;
-    uint16_t distance;
-    uint16_t signalRate;
-    uint16_t ambientRate;
     I2C_HandleTypeDef* I2cHandle;
-
 } VL53L1_Dev_t;
 
 /** @brief VL53L1_WriteMulti() definition.\n

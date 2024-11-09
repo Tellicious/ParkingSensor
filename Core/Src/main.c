@@ -169,15 +169,14 @@ int main(void) {
     //VL53L1X_CalibrateOffset(VL53L1X_dev, 140, &offset); /* may take few second to perform the offset cal*/
     //VL53L1X_CalibrateXtalk(VL53L1X_dev, 1000, &xtalk); /* may take few second to perform the xtalk cal */
     VL53L1X_StartRanging(VL53L1X_dev); /* This function has to be called to enable the ranging */
-    VL53L1X_dev.drdy = 0;
+    uint8_t drdy = 0;
     VL53L1X_ClearInterrupt(VL53L1X_dev);
 
     /* Wait for first data to be ready so to synchronize with reading loop */
-    while (!VL53L1X_dev.drdy) {
-        VL53L1X_CheckForDataReady(VL53L1X_dev, &VL53L1X_dev.drdy);
+    while (!drdy) {
+        VL53L1X_CheckForDataReady(VL53L1X_dev, &drdy);
         HAL_Delay(1);
     }
-    VL53L1X_dev.drdy = 0;
     VL53L1X_ClearInterrupt(VL53L1X_dev); /* clear interrupt has to be called to enable next interrupt*/
 
     /* Start timers */
@@ -257,11 +256,11 @@ int main(void) {
                     smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
                     /* Re-start LIDAR timer */
                     /* Wait for first data to be ready so to synchronize with reading loop */
-                    while (!VL53L1X_dev.drdy) {
-                        VL53L1X_CheckForDataReady(VL53L1X_dev, &VL53L1X_dev.drdy);
+                    uint8_t drdy = 0;
+                    while (!drdy) {
+                        VL53L1X_CheckForDataReady(VL53L1X_dev, &drdy);
                         HAL_Delay(1);
                     }
-                    VL53L1X_dev.drdy = 0;
                     VL53L1X_ClearInterrupt(VL53L1X_dev); /* clear interrupt has to be called to enable next interrupt*/
                     timerStart(&timerMeasure, HAL_GetTick());
                 }
@@ -275,18 +274,20 @@ int main(void) {
         /* Measurement loop */
         if (timerEventExists(&timerMeasure)) {
             timerClear(&timerMeasure);
-            VL53L1X_CheckForDataReady(VL53L1X_dev, &VL53L1X_dev.drdy);
-            if (VL53L1X_dev.drdy) {
-                VL53L1X_dev.drdy = 0;
-                VL53L1X_GetRangeStatus(VL53L1X_dev, &VL53L1X_dev.rangeStatus);
-                VL53L1X_GetDistance(VL53L1X_dev, &VL53L1X_dev.distance);
-                //	VL53L1X_GetSignalRate(VL53L1X_dev, &VL53L1X_dev.signalRate);
-                //	VL53L1X_GetAmbientRate(VL53L1X_dev, &VL53L1X_dev.ambientRate);
+            uint8_t drdy = 0;
+            VL53L1X_CheckForDataReady(VL53L1X_dev, &drdy);
+            if (drdy) {
+                uint8_t rangeStatus;
+                uint16_t distance;
+                VL53L1X_GetRangeStatus(VL53L1X_dev, &rangeStatus);
+                VL53L1X_GetDistance(VL53L1X_dev, &distance);
+                //	VL53L1X_GetSignalRate(VL53L1X_dev, &signalRate);
+                //	VL53L1X_GetAmbientRate(VL53L1X_dev, &ambientRate);
                 VL53L1X_ClearInterrupt(VL53L1X_dev); /* clear interrupt has to be called to enable next interrupt*/
 
-                if ((VL53L1X_dev.rangeStatus == 0) || (VL53L1X_dev.rangeStatus == 7)) {
+                if ((rangeStatus == 0) || (rangeStatus == 7)) {
                     previousDistance = actualDistance;
-                    actualDistance = (uint16_t)roundf(movingAvgCalc(&_distMovAvg, VL53L1X_dev.distance));
+                    actualDistance = (uint16_t)roundf(movingAvgCalc(&_distMovAvg, distance));
                     float appSpeed = movingAvgCalc(&_appSpeedMovAvg, (actualDistance - previousDistance) * 1e3 / configTIMER_MEASURE_MS);
                     miniPrintf(">TDist:%d\n>CDist:%d\n", targetDistance, actualDistance);
 
@@ -355,7 +356,7 @@ int main(void) {
                         }
                     }
                 } else {
-                    miniPrintf("LIDARstatus:%d\n", VL53L1X_dev.rangeStatus);
+                    miniPrintf("LIDARstatus:%d\n", rangeStatus);
                     /* Turn off LEDs */
                     smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
                     while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
