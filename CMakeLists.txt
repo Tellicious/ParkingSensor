@@ -64,7 +64,7 @@ set(linker_OPTS
 )
 
 # Add STM32CubeMX library
-add_subdirectory(cmake/stm32cubemx)
+include (cmake/STM32Cube.cmake)
 
 # Add ADVutils library
 set (ADVUtils_COMPILE_OPTS

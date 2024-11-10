@@ -10,3 +10,11 @@
 	path = Modules/smartLED
 	url = https://github.com/Tellicious/STM32-smartLED
 	branch = main
+[submodule "Modules/STM32F1xx_HAL_Driver"]
+	path = Modules/STM32F1xx_HAL_Driver
+	url = https://github.com/STMicroelectronics/stm32f1xx-hal-driver/
+	branch = master
+[submodule "Modules/CMSIS_device_F1"]
+	path = Modules/CMSIS_device_F1
+	url = https://github.com/STMicroelectronics/cmsis-device-f1/
+	branch = master
