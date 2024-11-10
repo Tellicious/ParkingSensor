@@ -50,12 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-/Debug/
-/.vs/
 
+/.vs/
 .DS_Store
-/Debug Remote/
-/Debug Main/
-/Release Main/
-/Release Remote/
+/Debug*
+/Release*
 /build/
+/CMakeFiles/
