@@ -56,11 +56,11 @@ extern "C" {
 /* Distance from targetDistance in mm where LEDs start blinking red */
 #define configMIN_DISTANCE_MM              50
 /* Distance from targetDistance in mm where LEDs light up in green */
-#define configMEASURING_RANGE_MM           2000
+#define configMEASURING_RANGE_MM           1200
 /* Distance from targetDistance in mm where LEDs turn off */
 #define configMEASURING_STOP_MM            (configMEASURING_RANGE_MM + 100)
 /* Minimum approach speed to sensor in mm/s to detect if something is approaching or not */
-#define configMIN_APPROACH_SPEED_MM_S      -20
+#define configMIN_APPROACH_SPEED_MM_S      -15
 /* Delay in ms to turn on measuring when still */
 #define configMEASURING_START_DELAY_MS     500u
 /* Delay in ms to turn off measuring when still */
