@@ -68,7 +68,7 @@ smartLED_t LEDstrip;
 VL53L1_Dev_t VL53L1X_dev;
 movingAvg_t _distMovAvg, _appSpeedMovAvg;
 /* Sensor status */
-parkingSensorStatus_t status = STATUS_RESET;
+parkingSensorStatus_t status = STATUS_STOP;
 /* EEPROM emulation addresses */
 uint16_t VirtAddVarTab[NB_OF_VAR] = {1, 2};
 /* Distance measurement */
@@ -197,6 +197,13 @@ int main(void) {
         targetDistance = 800;
     }
 
+    /* Turn off LEDs */
+    HAL_Delay(200);
+    smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
+    while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
+        HAL_Delay(10);
+    }
+
     //TODO test if I need to raise LED pin high to reduce power consumption
     /* USER CODE END 2 */
 
@@ -303,13 +310,6 @@ int main(void) {
                             } else {
                                 measStopCnt = configMEASURING_STOP_DELAY_MS / configTIMER_MEASURE_MS;
                             }
-                            if (status != STATUS_RUNNING) {
-                                /* Turn off LEDs */
-                                smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
-                                while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
-                                    HAL_Delay(10);
-                                }
-                            }
                             break;
                         case STATUS_STOP:
                             if (actualDistance >= (targetDistance + configMEASURING_STOP_MM)) {
@@ -341,10 +341,8 @@ int main(void) {
                             smartLED_startTransfer(&LEDstrip);
                         } else {
                             /* Show decreasing green bar */
-                            uint16_t LEDnr = (uint16_t)(roundf(
-                                configLED_NUMBER
-                                * fminf((float)(actualDistance - targetDistance - configMIN_DISTANCE_MM) / (configMEASURING_RANGE_MM - configMIN_DISTANCE_MM),
-                                        1)));
+                            uint16_t LEDnr =
+                                (uint16_t)(roundf(configLED_NUMBER * fminf((float)(actualDistance - targetDistance - configMIN_DISTANCE_MM) / (configMEASURING_RANGE_MM - configMIN_DISTANCE_MM), 1)));
                             for (uint16_t ii = 0; ii < configLED_NUMBER; ii++) {
                                 smartLED_updateColor(&LEDstrip, ii, SMARTLED_GREEN, (ii < LEDnr) ? 0xFF : 0);
                                 smartLED_updateColor(&LEDstrip, ii, SMARTLED_RED, 0);
@@ -353,6 +351,12 @@ int main(void) {
                             while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
                                 HAL_Delay(10);
                             }
+                        }
+                    } else {
+                        /* Turn off LEDs */
+                        smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
+                        while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
+                            HAL_Delay(10);
                         }
                     }
                 } else {
