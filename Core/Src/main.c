@@ -261,7 +261,7 @@ int main(void) {
                     timerStop(&timerBrightness);
                     EE_WriteVariable(1, LEDstrip._brightness);
                     smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
-                    /* Re-start LIDAR timer */
+                    /* Re-start measurement timer */
                     /* Wait for first data to be ready so to synchronize with reading loop */
                     uint8_t drdy = 0;
                     while (!drdy) {
