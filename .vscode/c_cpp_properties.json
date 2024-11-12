@@ -3,24 +3,16 @@
         {
             "name": "Mac",
             "includePath": [
-                "c:/Users/62681/OneDrive - Bain/Documents/GitHub/ADVDrone/**"
+                "${workspaceFolder}/**"
             ],
             "macFrameworkPath": [
                 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
             ],
-            "compilerPath": "/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.macos64_1.1.100.202310310803/tools/bin/arm-none-eabi-gcc",
+            "compilerPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/arm-none-eabi-gcc-12.3.1",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "macos-gcc-arm",
+            "intelliSenseMode": "gcc-arm",
             "configurationProvider": "ms-vscode.cmake-tools",
-            "mergeConfigurations": false,
-            "browse": {
-                "path": [
-                    "c:/Users/62681/OneDrive - Bain/Documents/GitHub/ADVDrone/**",
-                    "${workspaceFolder}"
-                ],
-                "limitSymbolsToIncludedHeaders": true
-            },
             "compilerArgs": [
                 "-Wall",
                 "-Wextra",
@@ -33,10 +25,10 @@
             "includePath": [
                 "${workspaceFolder}/**"
             ],
-            "compilerPath": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/arm-none-eabi-gcc-10.3.1.exe",
+            "compilerPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/arm-none-eabi-gcc-12.3.1.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "windows-gcc-arm",
+            "intelliSenseMode": "gcc-arm",
             "configurationProvider": "ms-vscode.cmake-tools",
             "compilerArgs": [
                 "-Wall",
@@ -48,7 +40,7 @@
         {
             "name": "STM32",
             "configurationProvider": "ms-vscode.cmake-tools",
-            "intelliSenseMode": "${default}"
+            "intelliSenseMode": "gcc-arm"
         }
     ],
     "version": 4
