@@ -4,6 +4,10 @@ cmake_minimum_required(VERSION 3.25)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
+SET(CMAKE_C_FLAGS_DEBUG  "-Og -g3 -DDEBUG")
+SET(CMAKE_C_FLAGS_RELEASE  "-O2 -g0 -DNDEBUG")
+SET(CMAKE_ASM_FLAGS_DEBUG "-g3 -DDEBUG")
+SET(CMAKE_ASM_FLAGS_RELEASE "-g0 -DNDEBUG")
 
 # Include target creation file
 include("cmake/createTarget.cmake")
@@ -31,8 +35,6 @@ set(cpu_PARAMS
 # Set user definitions
 set(user_DEFS
     ADVUTILS_USE_DYNAMIC_ALLOCATION
-    $<$<AND:$<CONFIG:Debug>,$<COMPILE_LANGUAGE:ASM>>:DEBUG>
-    $<$<AND:$<CONFIG:Debug>,$<COMPILE_LANGUAGE:C>>:DEBUG>
 )
 
 # Compiler options
@@ -42,10 +44,6 @@ set(compiler_OPTS
     -Wextra
     -Wpedantic
     -Wno-unused-parameter
-    $<$<CONFIG:Debug>:-Og -g3>
-    $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:ASM>>:-g0>
-    $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:C>>:-O2 -g0>
-    $<$<AND:$<CONFIG:Release>,$<COMPILE_LANGUAGE:CXX>>:-Os -g0>
 )
 
 # Linker options
