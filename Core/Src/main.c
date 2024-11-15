@@ -341,8 +341,10 @@ int main(void) {
                             smartLED_startTransfer(&LEDstrip);
                         } else {
                             /* Show decreasing green bar */
-                            uint16_t LEDnr =
-                                (uint16_t)(roundf(configLED_NUMBER * fminf((float)(actualDistance - targetDistance - configMIN_DISTANCE_MM) / (configMEASURING_RANGE_MM - configMIN_DISTANCE_MM), 1)));
+                            uint16_t LEDnr = (uint16_t)(roundf(
+                                configLED_NUMBER
+                                * fminf((float)(actualDistance - targetDistance - configMIN_DISTANCE_MM) / (configMEASURING_RANGE_MM - configMIN_DISTANCE_MM),
+                                        1)));
                             for (uint16_t ii = 0; ii < configLED_NUMBER; ii++) {
                                 smartLED_updateColor(&LEDstrip, ii, SMARTLED_GREEN, (ii < LEDnr) ? 0xFF : 0);
                                 smartLED_updateColor(&LEDstrip, ii, SMARTLED_RED, 0);
@@ -395,7 +397,7 @@ void SystemClock_Config(void) {
     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
     RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-    RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+    RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL2;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
         Error_Handler();
     }
@@ -405,10 +407,10 @@ void SystemClock_Config(void) {
     RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK) {
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK) {
         Error_Handler();
     }
 }
