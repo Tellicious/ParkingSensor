@@ -26,6 +26,15 @@ jobs:
             binutils-arm-none-eabi \
             cmake ninja-build \
             git
+    
+    - name: Wait for CMSIS update to run
+      if: ${{ github.event_name == 'pull_request' }}
+      uses: lewagon/wait-on-check-action@v1.3.4
+      with:
+        ref: ${{ env.BRANCH_NAME }}
+        check-name: 'CMSISUpdate'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        wait-interval: 10
 
     - name: Checkout repository
       uses: actions/checkout@v4
