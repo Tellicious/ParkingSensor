@@ -1,60 +1,16 @@
-name: CMSIS driver update
+name: CMSIS-core driver update
 
 on:
   pull_request:
     types: [opened, reopened]
   workflow_dispatch:
 
-env:
-  STM32CUBE_REPO: STM32CubeF1
-  BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
-
 jobs:
   CMSISUpdate:
     if: ${{ contains(github.event.pull_request.title, 'Bump Modules/CMSIS') }}
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Install dependencies
-      run: |
-        sudo apt install -y \
-            git
-
-    - name: Checkout Main repository
-      uses: actions/checkout@v4
-      with:
-        ref: ${{ env.BRANCH_NAME }}
-        fetch-depth: 0
-        submodules: 'recursive'
-        token: ${{ secrets.PAT }}
-        path: ${{ github.event.repository.name }}
-    
-    - name: Checkout ${{ env.STM32CUBE_REPO }} repo
-      uses: actions/checkout@v4
-      with:
-        repository: STMicroelectronics/${{ env.STM32CUBE_REPO }}
-        ref: master
-        fetch-depth: 1
-        path: ${{ env.STM32CUBE_REPO }}
-    
-    - name: Delete and replace target files
-      run: |
-        rm -rf $GITHUB_WORKSPACE/${{ github.event.repository.name }}/Drivers/CMSIS/Include/*
-        cp -rf $GITHUB_WORKSPACE/${{ env.STM32CUBE_REPO }}/Drivers/CMSIS/Core/Include/* $GITHUB_WORKSPACE/${{ github.event.repository.name }}/Drivers/CMSIS/Include/
-    
-    - name: Commit changes
-      run: |
-        cd $GITHUB_WORKSPACE/${{ github.event.repository.name }}
-        if [[ `git status --porcelain` ]]; then
-          echo "Changes detected, committing changes."
-          git config --global core.autocrlf input
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git diff-index --quiet HEAD || git commit -m "Updated CMSIS core" -a
-          git push
-        else
-          echo "WARNING: No changes were detected."
-        fi
-      shell: bash
-  
-
+    uses: Tellicious/CIActions/.github/workflows/CMSISCoreUpdate.yml@main
+    with:
+      target-branch: ${{ github.head_ref || github.ref_name }}
+      stm32cube-repo: STM32CubeF1
+    secrets:
+      pat: ${{ secrets.PAT }}
