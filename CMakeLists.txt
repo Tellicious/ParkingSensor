@@ -1,14 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
 
-# Setup compiler settings
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_C_EXTENSIONS ON)
-SET(CMAKE_C_FLAGS_DEBUG  "-Og -g3 -DDEBUG")
-SET(CMAKE_C_FLAGS_RELEASE  "-O2 -g0 -DNDEBUG")
-SET(CMAKE_ASM_FLAGS_DEBUG "-g3 -DDEBUG")
-SET(CMAKE_ASM_FLAGS_RELEASE "-g0 -DNDEBUG")
-
 # Include target creation file
 include("cmake/createTarget.cmake")
 
@@ -18,12 +9,21 @@ include("cmake/gcc-arm-none-eabi.cmake")
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
-# Enable CMake support for ASM and C languages
-enable_language(C ASM)
-
 # Core project settings
 project("ParkingSensor")
 message("Build type: " ${CMAKE_BUILD_TYPE})
+
+# Enable CMake support for ASM and C languages
+enable_language(C ASM)
+
+# Setup compiler settings
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS ON)
+SET(CMAKE_C_FLAGS_DEBUG  "-Og -g3 -DDEBUG")
+SET(CMAKE_C_FLAGS_RELEASE  "-O2 -g0 -DNDEBUG")
+SET(CMAKE_ASM_FLAGS_DEBUG "-g3 -DDEBUG")
+SET(CMAKE_ASM_FLAGS_RELEASE "-g0 -DNDEBUG")
 
 # Core MCU flags, CPU type, instruction set and FPU setup
 set(cpu_PARAMS     
