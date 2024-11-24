@@ -48,7 +48,7 @@ extern "C" {
 /* LED control timer interval in ms */
 #define configTIMER_LED_MS                 1000
 /* LED brightness control timer interval in ms */
-#define configTIMER_BRIGHTNESS_MS          100
+#define configTIMER_BRIGHTNESS_MS          50
 /* LIDAR reading timer interval in ms */
 #define configTIMER_MEASURE_MS             210
 
@@ -71,8 +71,8 @@ extern "C" {
 #define configLED_NUMBER                   40
 /* Number of LEDs processed per IRQ */
 #define configLED_PER_IRQ                  10
-/* Lenght in ms of blinking when max or min brightness is reached */
-#define configLED_BRIGHTNESS_BLINK_MS      3000u
+/* Lenght in ms of waiting time when max or min brightness is reached, before reversing direction */
+#define configLED_BRIGHTNESS_WAIT_MS       3000u
 /* Delay in ms to save brightness */
 #define configLED_BRIGHTNESS_SAVE_DELAY_MS 5000u
 

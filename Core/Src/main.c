@@ -77,7 +77,7 @@ uint16_t actualDistance = 0, targetDistance = 1000, previousDistance = 0;
 uint8_t blink = 0;
 /* LED brightness control */
 int8_t brightnessDir = 2;
-uint16_t brightnessSaveCnt = 0, brightnessBlinkCnt = 0;
+uint16_t brightnessSaveCnt = 0, brightnessWaitCnt = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -215,12 +215,12 @@ int main(void) {
             timerClear(&timerButton);
             buttonPressType_t buttonPress = buttonGetPress(&userBtn, HAL_GetTick());
             if (buttonPress == BUTTON_VERYLONG_PRESS) {
-                /* Stop LIDAR loop */
-                timerStop(&timerMeasure);
                 /* Start brightness changing loop */
                 if ((brightnessDir % 2) == 0) {
+                    /* Stop LIDAR loop */
+                    timerStop(&timerMeasure);
                     brightnessSaveCnt = configLED_BRIGHTNESS_SAVE_DELAY_MS / configTIMER_BRIGHTNESS_MS;
-                    brightnessBlinkCnt = configLED_BRIGHTNESS_BLINK_MS / configTIMER_BRIGHTNESS_MS;
+                    brightnessWaitCnt = configLED_BRIGHTNESS_WAIT_MS / configTIMER_BRIGHTNESS_MS;
                     brightnessDir >>= 1;
                     smartLED_updateAllRGBColors(&LEDstrip, 0, 255, 0);
                     timerStart(&timerBrightness, HAL_GetTick());
@@ -238,20 +238,26 @@ int main(void) {
         /* Brightness changing loop */
         if (timerEventExists(&timerBrightness)) {
             timerClear(&timerBrightness);
-            if (brightnessDir == 1) {
-                smartLED_increaseBrightness(&LEDstrip);
-            } else if (brightnessDir == -1) {
-                smartLED_decreaseBrightness(&LEDstrip);
-            }
-            if (((brightnessDir % 2) != 0) && ((LEDstrip._brightness == 0xFF) || (LEDstrip._brightness == 0))) {
-                /* If brightnessDir is 1 or -1 and brightness is either 0xFF or 0, blink LED strip */
-                brightnessDir = 0;
-                if (brightnessBlinkCnt--) {
-                    smartLED_updateAllRGBColors(&LEDstrip, 0, 255 * ((brightnessBlinkCnt % 4) > 2), 0);
-                } else {
-                    smartLED_updateAllRGBColors(&LEDstrip, 0, 255, 0);
-                    brightnessDir = (LEDstrip._brightness == 0xFF) ? -1 : 1;
-                    brightnessBlinkCnt = configLED_BRIGHTNESS_SAVE_DELAY_MS / configTIMER_BRIGHTNESS_MS;
+            if ((brightnessDir % 2) != 0) {
+                if (brightnessDir == 1) {
+                    smartLED_increaseBrightness(&LEDstrip);
+                } else if (brightnessDir == -1) {
+                    smartLED_decreaseBrightness(&LEDstrip);
+                }
+                uint16_t LEDnr = (configLED_NUMBER * LEDstrip._brightness) / 255;
+                for (uint16_t ii = 0; ii < configLED_NUMBER; ii++) {
+                    smartLED_updateColor(&LEDstrip, ii, SMARTLED_GREEN, (ii <= LEDnr) ? 0xFF : 0);
+                    smartLED_updateColor(&LEDstrip, ii, SMARTLED_RED, 0);
+                    smartLED_updateColor(&LEDstrip, ii, SMARTLED_BLUE, 0);
+                }
+
+                if (((LEDstrip._brightness == 0xFF) || (LEDstrip._brightness == 0))) {
+                    /* If brightnessDir is 1 or -1 and brightness is either 0xFF or 0, wait before reversing direction */
+                    brightnessDir = 3;
+                    if (!brightnessWaitCnt--) {
+                        brightnessDir = (LEDstrip._brightness == 0xFF) ? -1 : 1;
+                        brightnessWaitCnt = configLED_BRIGHTNESS_WAIT_MS / configTIMER_BRIGHTNESS_MS;
+                    }
                 }
             } else if ((brightnessDir % 2) == 0) {
                 /* If brightnessDir is 2 or -2 run countdown then stop and save value */
