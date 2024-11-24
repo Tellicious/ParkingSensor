@@ -349,7 +349,7 @@ int main(void) {
                                 * fminf((float)(actualDistance - targetDistance - configMIN_DISTANCE_MM) / (configMEASURING_RANGE_MM - configMIN_DISTANCE_MM),
                                         1)));
                             for (uint16_t ii = 0; ii < configLED_NUMBER; ii++) {
-                                smartLED_updateColor(&LEDstrip, ii, SMARTLED_GREEN, (ii < LEDnr) ? 0xFF : 0);
+                                smartLED_updateColor(&LEDstrip, ii, SMARTLED_GREEN, (ii <= LEDnr) ? 0xFF : 0);
                                 smartLED_updateColor(&LEDstrip, ii, SMARTLED_RED, 0);
                                 smartLED_updateColor(&LEDstrip, ii, SMARTLED_BLUE, 0);
                             }
