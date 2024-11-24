@@ -24,7 +24,7 @@
         "engineLogging": true
       },
       "preLaunchTask": "Build project",
-      "svdPath": "${config:STM32VSCodeExtension.cubeCLT.path}/STMicroelectronics_CMSIS_SVD/STM32F103.svd"
+      "svdPath": "${command:vscode-embedded.st.svd}/STM32F103.svd"
     },
     {
       "name": "Cortex-Debug Launch",
@@ -37,7 +37,7 @@
       "interface": "swd",
       //"serialNumber": "", //Set ST-Link ID if you use multiple at the same time
       "runToEntryPoint": "main",
-      "svdFile": "${config:STM32VSCodeExtension.cubeCLT.path}/STMicroelectronics_CMSIS_SVD/STM32F103.svd",
+      "svdFile": "${command:vscode-embedded.st.svd}/STM32F103.svd",
       "v1": false, //Change it depending on ST Link version
       "serverArgs": [
         "-m",
@@ -61,7 +61,7 @@
       "interface": "swd",
       //"serialNumber": "", //Set ST-Link ID if you use multiple at the same time
       "runToEntryPoint": "main",
-      "svdFile": "${config:STM32VSCodeExtension.cubeCLT.path}/STMicroelectronics_CMSIS_SVD/STM32F103.svd",
+      "svdFile": "${command:vscode-embedded.st.svd}/STM32F103.svd",
       "v1": false, //Change it depending on ST Link version
       "serverArgs": [
         "-m",
