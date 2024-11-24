@@ -272,7 +272,9 @@ int main(void) {
                     timerStart(&timerMeasure, HAL_GetTick());
                 }
             }
+#ifdef DEBUG
             miniPrintf("Brightness:%d\n", LEDstrip._brightness);
+#endif /* DEBUG */
             while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
                 HAL_Delay(10);
             }
@@ -296,8 +298,9 @@ int main(void) {
                     previousDistance = actualDistance;
                     actualDistance = (uint16_t)roundf(movingAvgCalc(&_distMovAvg, distance));
                     float appSpeed = movingAvgCalc(&_appSpeedMovAvg, (actualDistance - previousDistance) * 1e3 / configTIMER_MEASURE_MS);
+#ifdef DEBUG
                     miniPrintf(">TDist:%d\n>CDist:%d\n", targetDistance, actualDistance);
-
+#endif /* DEBUG */
                     /* Finite state machine */
                     switch (status) {
                         case STATUS_RUNNING:
@@ -362,7 +365,9 @@ int main(void) {
                         }
                     }
                 } else {
+#ifdef DEBUG
                     miniPrintf("LIDARstatus:%d\n", rangeStatus);
+#endif /* DEBUG */
                     /* Turn off LEDs */
                     smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
                     while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
