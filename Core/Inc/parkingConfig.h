@@ -68,7 +68,7 @@ extern "C" {
 
 /* LED strip configuration ---------------------------------------------------*/
 /* Number of LEDs in the strip */
-#define configLED_NUMBER                   20
+#define configLED_NUMBER                   40
 /* Number of LEDs processed per IRQ */
 #define configLED_PER_IRQ                  10
 /* Lenght in ms of blinking when max or min brightness is reached */
