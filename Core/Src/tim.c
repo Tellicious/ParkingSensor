@@ -40,12 +40,13 @@ void MX_TIM1_Init(void) {
     TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
 
     /* USER CODE BEGIN TIM1_Init 1 */
-    //Period is set to 19 so to get an 800kHz update rate with 16MHz clock
+    //Period is set to 29 so to get a 500kHz update rate with 16MHz clock
+    //Nominal update rate is around 800kHz, but microcontroller struggles when running at low frequency
     /* USER CODE END TIM1_Init 1 */
     htim1.Instance = TIM1;
     htim1.Init.Prescaler = 0;
     htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-    htim1.Init.Period = 19;
+    htim1.Init.Period = 29;
     htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     htim1.Init.RepetitionCounter = 0;
     htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
