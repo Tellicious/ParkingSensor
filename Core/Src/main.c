@@ -203,8 +203,6 @@ int main(void) {
     while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
         HAL_Delay(10);
     }
-
-    //TODO test if I need to raise LED pin high to reduce power consumption
     /* USER CODE END 2 */
 
     /* Infinite loop */
