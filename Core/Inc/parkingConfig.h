@@ -70,7 +70,7 @@ extern "C" {
 /* Number of LEDs in the strip */
 #define configLED_NUMBER                   40
 /* Number of LEDs processed per IRQ */
-#define configLED_PER_IRQ                  14
+#define configLED_PER_IRQ                  8
 /* Lenght in ms of waiting time when max or min brightness is reached, before reversing direction */
 #define configLED_BRIGHTNESS_WAIT_MS       3000u
 /* Delay in ms to save brightness */
