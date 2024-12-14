@@ -18,3 +18,7 @@
 	path = Modules/CMSIS_device_F1
 	url = https://github.com/STMicroelectronics/cmsis-device-f1/
 	branch = master
+[submodule "Modules/EEPROM"]
+	path = Modules/EEPROM
+	url = https://github.com/Tellicious/STM32-EEPROM
+	branch = main

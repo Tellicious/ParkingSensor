@@ -69,8 +69,6 @@ VL53L1_Dev_t VL53L1X_dev;
 movingAvg_t _distMovAvg, _appSpeedMovAvg;
 /* Sensor status */
 parkingSensorStatus_t status = STATUS_STOP;
-/* EEPROM emulation addresses */
-uint16_t VirtAddVarTab[NB_OF_VAR] = {1, 2};
 /* Distance measurement */
 uint16_t measStopCnt = 0, measStartCnt = 0;
 uint16_t actualDistance = 0, targetDistance = 1000, previousDistance = 0;
@@ -185,15 +183,15 @@ int main(void) {
 
     /* Initialize EEPROM emulation*/
     HAL_FLASH_Unlock();
-    if (EE_Init() != HAL_OK) {
+    if (EEPROM_Init() != EEPROM_SUCCESS) {
         Error_Handler();
     }
 
     /* Read target distance and brightness values stored in flash memory */
-    if (EE_ReadVariable(1, (uint16_t*)&(LEDstrip._brightness))) {
+    if (EEPROM_ReadVariable(0, (uint16_t*)&(LEDstrip._brightness))) {
         smartLED_setBrightness(&LEDstrip, 255);
     }
-    if (EE_ReadVariable(2, &targetDistance)) {
+    if (EEPROM_ReadVariable(1, &targetDistance)) {
         targetDistance = 800;
     }
 
@@ -229,7 +227,7 @@ int main(void) {
             } else if (buttonPress == BUTTON_DOUBLE_PRESS) {
                 /* Save target distance */
                 targetDistance = actualDistance;
-                EE_WriteVariable(2, targetDistance);
+                EEPROM_WriteVariable(1, targetDistance);
             }
         }
 
@@ -263,7 +261,7 @@ int main(void) {
                     /* Reset brightness direction to 2, stop timer, save value and turn off LEDs */
                     brightnessDir = 2;
                     timerStop(&timerBrightness);
-                    EE_WriteVariable(1, LEDstrip._brightness);
+                    EEPROM_WriteVariable(0, LEDstrip._brightness);
                     smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
                     /* Re-start measurement timer */
                     /* Wait for first data to be ready so to synchronize with reading loop */

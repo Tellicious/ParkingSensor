@@ -9,16 +9,16 @@ add_executable(${TARGET_NAME})
 
 # Sources
 set(sources_SRCS
-    Drivers/BSP/src/eeprom.c
     Drivers/BSP/VL53L1X/src/vl53l1_platform.c
     Drivers/BSP/VL53L1X/src/VL53L1X_api.c
     Drivers/BSP/VL53L1X/src/VL53L1X_calibration.c
+    Modules/EEPROM/eeprom.c
 )
 
 # Include directories for all compilers
 set(include_DIRS
-    Drivers/BSP/inc
     Drivers/BSP/VL53L1X/inc
+    Modules/EEPROM/
 )
 
 # Linker script
