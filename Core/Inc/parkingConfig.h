@@ -44,13 +44,13 @@ extern "C" {
 
 /* Timers configuration ------------------------------------------------------*/
 /* Button reading timer interval in ms */
-#define configTIMER_BUTTON_MS              100
+#define configTIMER_BUTTON_MS              100u
 /* LED control timer interval in ms */
-#define configTIMER_LED_MS                 1000
+#define configTIMER_LED_MS                 1000u
 /* LED brightness control timer interval in ms */
-#define configTIMER_BRIGHTNESS_MS          50
+#define configTIMER_BRIGHTNESS_MS          50u
 /* LIDAR reading timer interval in ms */
-#define configTIMER_MEASURE_MS             210
+#define configTIMER_MEASURE_MS             210u
 
 /* Measure configuration -----------------------------------------------------*/
 /* Distance from targetDistance in mm where LEDs start blinking red */
@@ -62,9 +62,9 @@ extern "C" {
 /* Minimum approach speed to sensor in mm/s to detect if something is approaching or not */
 #define configMIN_APPROACH_SPEED_MM_S      -15
 /* Delay in ms to turn on measuring when still */
-#define configMEASURING_START_DELAY_MS     500u
+#define configMEASURING_START_DELAY_MS     300u
 /* Delay in ms to turn off measuring when still */
-#define configMEASURING_STOP_DELAY_MS      5000u
+#define configMEASURING_STOP_DELAY_MS      7000u
 
 /* LED strip configuration ---------------------------------------------------*/
 /* Number of LEDs in the strip */
@@ -96,7 +96,7 @@ extern "C" {
 /* Number of samples for LIDAR moving average */
 #define configMOVAVG_LIDAR_SAMPLES         2
 /* Number of samples for approach speed moving average */
-#define configMOVAVG_APPSPEED_SAMPLES      3
+#define configMOVAVG_APPSPEED_SAMPLES      2
 
 #ifdef __cplusplus
 }
