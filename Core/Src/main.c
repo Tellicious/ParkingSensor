@@ -134,7 +134,7 @@ int main(void) {
 
     /* Moving average initialization */
     movingAvgInit(&_distMovAvg, configMOVAVG_LIDAR_SAMPLES);
-    movingAvgInit(&_appSpeedMovAvg, configMOVAVG_LIDAR_SAMPLES);
+    movingAvgInit(&_appSpeedMovAvg, configMOVAVG_APPSPEED_SAMPLES);
 
     /* LED Strip initialization */
     LEDstrip.chip = WS2812B;
