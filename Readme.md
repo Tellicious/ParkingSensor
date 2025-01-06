@@ -14,11 +14,8 @@ Programmable parking sensor that detect the distance from an approaching vehicle
 > [!IMPORTANT]  
 > To power a 40-LEDs bar, a power supply of at least 5V-2A is needed
 
-## Connections
-- **VL53L1X**: pin B9 (SDA) and B8 (SCL)
-- **WS2812B:** pin B15 via a 3.3 kOhm pull-up connected to 5V rail
-- **Push-button:** pin B4 via a 22 kOhm external pull-up connected to 3V3 rail (other side connected to ground)
-
+## Schematics
+![Schematics](Schematics/SchematicsImage.png)
 
 ## Configuration
 Low-level configuration is performed via the following parameters, defined in `parkingConfig.h`:
