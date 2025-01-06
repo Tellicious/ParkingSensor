@@ -296,7 +296,7 @@ int main(void) {
                 //	VL53L1X_GetAmbientRate(VL53L1X_dev, &ambientRate);
                 VL53L1X_ClearInterrupt(VL53L1X_dev); /* clear interrupt has to be called to enable next interrupt*/
 
-                if ((rangeStatus == 0) || (rangeStatus == 7)) {
+                if (rangeStatus == 0) {
                     previousDistance = actualDistance;
                     actualDistance = (uint16_t)roundf(movingAvgCalc(&_distMovAvg, distance));
                     float appSpeed = movingAvgCalc(&_appSpeedMovAvg, (actualDistance - previousDistance) * 1e3 / configTIMER_MEASURE_MS);
