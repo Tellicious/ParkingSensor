@@ -7,7 +7,7 @@
 	(title_block
 		(title "Parking Sensor Schematics")
 		(date "2025-01-06")
-		(rev "1.0.0")
+		(rev "2.0.0")
 	)
 	(lib_symbols
 		(symbol "BluePill:BluePillPlus"
@@ -966,6 +966,145 @@
 				)
 			)
 		)
+		(symbol "Connector_Generic:Conn_01x02"
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x02"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x02_1_1"
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 1.27)
+					(end 1.27 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Device:R_US"
 			(pin_numbers hide)
 			(pin_names
@@ -1541,6 +1680,301 @@
 				)
 			)
 		)
+		(symbol "Transistor_FET:IRLZ34N"
+			(pin_names hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Q"
+				(at 5.08 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "IRLZ34N"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
+				(at 5.08 -1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.infineon.com/dgdl/irlz34npbf.pdf?fileId=5546d462533600a40153567206892720"
+				(at 5.08 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Description" "30A Id, 55V Vds, 35mOhm Rds, N-Channel HEXFET Power MOSFET, TO-220AB"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "N-Channel HEXFET MOSFET Logic-Level"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "TO?220*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "IRLZ34N_0_1"
+				(polyline
+					(pts
+						(xy 0.254 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 1.905) (xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27) (xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508) (xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 2.286) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.794 0.508) (xy 2.921 0.381) (xy 3.683 0.381) (xy 3.81 0.254)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 -1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+			)
+			(symbol "IRLZ34N_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "VL53L1X_Board_1"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -1984,6 +2418,12 @@
 		)
 	)
 	(junction
+		(at 55.88 177.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "03cbf493-d54e-467a-84b8-c133205b67ed")
+	)
+	(junction
 		(at 55.88 153.67)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2001,6 +2441,12 @@
 		(color 0 0 0 0)
 		(uuid "4d0663cb-7e68-41a8-8d04-00e0ba8aef42")
 	)
+	(junction
+		(at 68.58 186.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b05fa311-5155-4815-81ef-d579381d9088")
+	)
 	(wire
 		(pts
 			(xy 55.88 153.67) (xy 68.58 153.67)
@@ -2013,23 +2459,13 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 165.1) (xy 73.66 165.1)
+			(xy 181.61 137.16) (xy 224.79 137.16)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "161998dd-8f30-4647-9c37-d95daccf1b67")
-	)
-	(wire
-		(pts
-			(xy 68.58 173.99) (xy 68.58 165.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1c262538-945e-405d-9195-887bb7392d6e")
+		(uuid "0ea0c27b-1f35-475f-ad40-95c324210062")
 	)
 	(wire
 		(pts
@@ -2060,6 +2496,16 @@
 			(type default)
 		)
 		(uuid "2548b475-7c21-4136-82bc-79248be97f65")
+	)
+	(wire
+		(pts
+			(xy 203.2 111.76) (xy 224.79 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "28aa7a3d-f37b-4b1a-bc9a-c0b5e21112aa")
 	)
 	(wire
 		(pts
@@ -2133,6 +2579,16 @@
 	)
 	(wire
 		(pts
+			(xy 55.88 177.8) (xy 60.96 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "618fc21d-6909-4fdc-9d5d-411e7fd896ab")
+	)
+	(wire
+		(pts
 			(xy 212.09 147.32) (xy 224.79 147.32)
 		)
 		(stroke
@@ -2183,6 +2639,36 @@
 	)
 	(wire
 		(pts
+			(xy 38.1 177.8) (xy 44.45 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c8eb6af-0fca-4a73-ac39-910277a1eda9")
+	)
+	(wire
+		(pts
+			(xy 68.58 182.88) (xy 68.58 186.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80d26e4a-782b-4612-8a56-c5cdbf3a6c7b")
+	)
+	(wire
+		(pts
+			(xy 181.61 134.62) (xy 224.79 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "85ac3676-c3d8-4593-9279-d2f13c245e6e")
+	)
+	(wire
+		(pts
 			(xy 222.25 149.86) (xy 224.79 149.86)
 		)
 		(stroke
@@ -2193,6 +2679,26 @@
 	)
 	(wire
 		(pts
+			(xy 68.58 186.69) (xy 68.58 189.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f3c406c-7f84-479d-98fb-d1dec1c163a3")
+	)
+	(wire
+		(pts
+			(xy 45.72 58.42) (xy 55.88 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9797e3d6-e74c-4c86-aea0-7e4dd9fcaa14")
+	)
+	(wire
+		(pts
 			(xy 209.55 142.24) (xy 224.79 142.24)
 		)
 		(stroke
@@ -2200,6 +2706,16 @@
 			(type default)
 		)
 		(uuid "a01b5861-3392-4c8a-bf1d-aefc3cbafa0b")
+	)
+	(wire
+		(pts
+			(xy 55.88 177.8) (xy 55.88 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a38e91b4-d8f6-42ab-a160-e6260ba5b5f3")
 	)
 	(wire
 		(pts
@@ -2243,6 +2759,16 @@
 	)
 	(wire
 		(pts
+			(xy 209.55 132.08) (xy 224.79 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b8367bcf-9b0f-42e9-9880-f8920d858016")
+	)
+	(wire
+		(pts
 			(xy 48.26 162.56) (xy 55.88 162.56)
 		)
 		(stroke
@@ -2280,6 +2806,26 @@
 			(type default)
 		)
 		(uuid "c97d9808-0fef-4b46-9027-853a40dc3d22")
+	)
+	(wire
+		(pts
+			(xy 68.58 165.1) (xy 73.66 165.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd590307-9d4b-4bee-9d1f-c27d973e7729")
+	)
+	(wire
+		(pts
+			(xy 52.07 177.8) (xy 55.88 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dfa0e530-27c7-4038-a852-6856a3ab1842")
 	)
 	(wire
 		(pts
@@ -2323,6 +2869,16 @@
 	)
 	(wire
 		(pts
+			(xy 68.58 172.72) (xy 68.58 165.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8405c55-f954-412c-aafd-a2df7ab24fad")
+	)
+	(wire
+		(pts
 			(xy 36.83 43.18) (xy 55.88 43.18)
 		)
 		(stroke
@@ -2330,6 +2886,16 @@
 			(type default)
 		)
 		(uuid "f928c8fa-dee1-420b-8df9-685d8c1d20df")
+	)
+	(wire
+		(pts
+			(xy 55.88 186.69) (xy 68.58 186.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "faed1113-8fd8-4a58-80b5-8e5fe8847ea2")
 	)
 	(text "Push-Button\n"
 		(exclude_from_sim no)
@@ -2381,6 +2947,28 @@
 		)
 		(uuid "f65fe468-4923-4005-8ce9-405393173235")
 	)
+	(label "USART_TX"
+		(at 181.61 134.62 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "17550b90-98b2-4600-aa61-2f90ba23030d")
+	)
+	(label "USART_RX"
+		(at 181.61 137.16 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8e5350e1-405b-4891-8629-c9e666f8f42b")
+	)
 	(global_label "3V3"
 		(shape output)
 		(at 267.97 43.18 0)
@@ -2399,6 +2987,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Q1"
+		(shape output)
+		(at 203.2 111.76 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1693afcd-c37b-406d-8105-b3180cfd30a2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 197.6748 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -2482,6 +3092,28 @@
 		(uuid "276a0673-3fd3-4f62-9233-1d7c7a00ce8f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 201.8854 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PA8"
+		(shape input)
+		(at 38.1 177.8 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "32cd6894-5f04-488e-8674-b1fe6dea824f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 31.5467 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2579,6 +3211,28 @@
 			)
 		)
 	)
+	(global_label "VL53L1X_GPIO1"
+		(shape input)
+		(at 209.55 132.08 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8887ab23-e7ce-4ec3-974d-50a75fb81899")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 191.9296 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "SW_1"
 		(shape input)
 		(at 218.44 129.54 180)
@@ -2642,6 +3296,104 @@
 				)
 				(justify right)
 				(hide yes)
+			)
+		)
+	)
+	(global_label "PB5"
+		(shape output)
+		(at 45.72 58.42 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f5b55c2c-bc66-4872-9695-50abf0468740")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 38.9853 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_FET:IRLZ34N")
+		(at 66.04 177.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "061b50b1-7b1e-4af6-8c85-1b80475f83ff")
+		(property "Reference" "Q1"
+			(at 72.39 176.5299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "IRLZ34N"
+			(at 72.39 179.0699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
+			(at 71.12 179.705 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.infineon.com/dgdl/irlz34npbf.pdf?fileId=5546d462533600a40153567206892720"
+			(at 71.12 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "30A Id, 55V Vds, 35mOhm Rds, N-Channel HEXFET Power MOSFET, TO-220AB"
+			(at 66.04 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "2a682275-c695-491a-beb0-81702db0d42b")
+		)
+		(pin "1"
+			(uuid "76ac5417-a61e-449f-9c22-0f5475af0370")
+		)
+		(pin "3"
+			(uuid "5c0bfb6e-43aa-4878-8170-df545d032c85")
+		)
+		(instances
+			(project ""
+				(path "/cf37ccb0-e1c9-4a0b-bbe6-3fad6fb15f4b"
+					(reference "Q1")
+					(unit 1)
+				)
 			)
 		)
 	)
@@ -2710,6 +3462,74 @@
 			(project "Parking Sensor"
 				(path "/cf37ccb0-e1c9-4a0b-bbe6-3fad6fb15f4b"
 					(reference "SW1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 48.26 177.8 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3553daee-8470-46cf-95d3-bf6070d8984a")
+		(property "Reference" "R4"
+			(at 48.26 171.45 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "300"
+			(at 48.26 173.99 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 48.514 176.784 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 48.26 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 48.26 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "720df7ff-ebfe-48bd-a276-98bebad90594")
+		)
+		(pin "1"
+			(uuid "119ce92e-8eab-4df7-90a0-110e518838d6")
+		)
+		(instances
+			(project "Parking Sensor"
+				(path "/cf37ccb0-e1c9-4a0b-bbe6-3fad6fb15f4b"
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -2800,7 +3620,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "22kOhm"
+		(property "Value" "22k"
 			(at 71.12 97.7899 0)
 			(effects
 				(font
@@ -2852,8 +3672,78 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 55.88 182.88 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4a35bcff-cbbc-4c7d-8ca8-9100a6542048")
+		(property "Reference" "R3"
+			(at 58.42 181.6099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 58.42 184.1499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 56.896 183.134 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 55.88 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 55.88 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "2172068d-a15d-47b2-a767-0ce5ae26e68d")
+		)
+		(pin "1"
+			(uuid "7e9f1d08-21eb-4462-88e8-6d2ac3459591")
+		)
+		(instances
+			(project "Parking Sensor"
+				(path "/cf37ccb0-e1c9-4a0b-bbe6-3fad6fb15f4b"
+					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GNDREF")
-		(at 68.58 173.99 0)
+		(at 68.58 189.23 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2862,7 +3752,7 @@
 		(fields_autoplaced yes)
 		(uuid "4a5d9b67-50da-452c-b671-104f45ca8a31")
 		(property "Reference" "#PWR07"
-			(at 68.58 180.34 0)
+			(at 68.58 195.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2871,7 +3761,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 68.58 179.07 0)
+			(at 68.58 194.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2879,7 +3769,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 68.58 173.99 0)
+			(at 68.58 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2888,7 +3778,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 68.58 173.99 0)
+			(at 68.58 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2897,7 +3787,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDREF\" , reference supply ground"
-			(at 68.58 173.99 0)
+			(at 68.58 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3485,7 +4375,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3kOhm"
+		(property "Value" "3.3k"
 			(at 58.42 158.7499 0)
 			(effects
 				(font
@@ -3597,6 +4487,74 @@
 			(project "Parking Sensor"
 				(path "/cf37ccb0-e1c9-4a0b-bbe6-3fad6fb15f4b"
 					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 176.53 137.16 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "95875ee4-a628-4d9f-916c-83b1c95c538e")
+		(property "Reference" "J1"
+			(at 176.53 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "USART"
+			(at 176.53 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 176.53 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 176.53 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 176.53 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "b92cc70b-b20a-4af7-8c91-e8ba025a55cf")
+		)
+		(pin "1"
+			(uuid "c997e1af-f85b-4fa3-94c9-cb98640f06ab")
+		)
+		(instances
+			(project ""
+				(path "/cf37ccb0-e1c9-4a0b-bbe6-3fad6fb15f4b"
+					(reference "J1")
 					(unit 1)
 				)
 			)
