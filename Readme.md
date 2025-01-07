@@ -3,7 +3,7 @@
 # Parking Sensor
 
 ## Description
-Programmable parking sensor that detect the distance from an approaching vehicle and displays it on a LED bar
+Programmable parking sensor that detects the distance from an approaching vehicle and displays it on a LED bar
 
 ## Hardware needed
 - 1 STM32F103C8T6 (Blue Pill)
