@@ -20,36 +20,37 @@ Programmable parking sensor that detects the distance from an approaching vehicl
 
 ## Configuration
 Low-level configuration is performed via the following parameters, defined in `parkingConfig.h`:
-| Parameter                            | Default Value | Description                                             |
-| ------------------------------------ | ------------- | ------------------------------------------------------- |
-| **Timer Configuration**              |               |                                                         |
-| `configTIMER_BUTTON_MS`              | 100           | Button reading timer interval (ms)                      |
-| `configTIMER_LED_MS`                 | 1000          | LED control timer interval (ms)                         |
-| `configTIMER_BRIGHTNESS_MS`          | 50            | LED brightness control timer interval (ms)              |
-| `configTIMER_MEASURE_MS`             | 210           | LIDAR reading timer interval (ms)                       |
-| **Measure Configuration**            |               |                                                         |
-| `configMIN_DISTANCE_MM`              | 50            | Distance from target where LEDs start blinking red (mm) |
-| `configMEASURING_RANGE_MM`           | 1200          | Distance from target where LEDs light up green (mm)     |
-| `configMEASURING_STOP_MM`            | 1300          | Distance where LEDs turn off (RANGE + 100mm)            |
-| `configMIN_APPROACH_SPEED_MM_S`      | -15           | Minimum approach speed to detect movement (mm/s)        |
-| `configMEASURING_START_DELAY_MS`     | 300           | Delay to start measuring when still (ms)                |
-| `configMEASURING_STOP_DELAY_MS`      | 7000          | Delay to stop measuring when still (ms)                 |
-| **LED Strip Configuration**          |               |                                                         |
-| `configLED_NUMBER`                   | 40            | Number of LEDs in the strip                             |
-| `configLED_PER_IRQ`                  | 8             | Number of LEDs processed per interrupt                  |
-| `configLED_BRIGHTNESS_WAIT_MS`       | 3000          | Wait time at max/min brightness before reversing (ms)   |
-| `configLED_BRIGHTNESS_SAVE_DELAY_MS` | 5000          | Delay to save brightness setting (ms)                   |
-| **LIDAR Configuration**              |               |                                                         |
-| `configLIDAR_TIMING_BUDGET_MS`       | 200           | LIDAR timing budget (ms) [15,20,33,50,100,200,500]      |
-| `configLIDAR_IM_TIME_MS`             | 205           | Inter-measurement time (ms)                             |
-| **Button Configuration**             |               |                                                         |
-| `configBUTTON_DEBOUNCING_MS`         | 50            | Button debouncing time (ms)                             |
-| `configBUTTON_RESET_MS`              | 400           | Button press reset time (ms)                            |
-| `configBUTTON_LONGPRESS_MS`          | 1000          | Button long-press time (ms)                             |
-| `configBUTTON_VERYLONGPRESS_MS`      | 2000          | Button very-long-press time (ms)                        |
-| **MovingAverage Configuration**      |               |                                                         |
-| `configMOVAVG_LIDAR_SAMPLES`         | 2             | Number of samples for LIDAR moving average              |
-| `configMOVAVG_APPSPEED_SAMPLES`      | 2             | Number of samples for approach speed moving average     |
+| Parameter                            | Default Value | Description                                                      |
+| ------------------------------------ | ------------- | ---------------------------------------------------------------- |
+| **Timer Configuration**              |               |                                                                  |
+| `configTIMER_BUTTON_MS`              | 100           | Button reading timer interval (ms)                               |
+| `configTIMER_LED_MS`                 | 1000          | LED control timer interval (ms)                                  |
+| `configTIMER_BRIGHTNESS_MS`          | 50            | LED brightness control timer interval (ms)                       |
+| `configTIMER_MEASURE_MS`             | 210           | LIDAR reading timer interval (ms)                                |
+| **Measure Configuration**            |               |                                                                  |
+| `configMIN_DISTANCE_MM`              | 50            | Distance from target where LEDs start blinking red (mm)          |
+| `configMEASURING_RANGE_MM`           | 1200          | Distance from target where LEDs light up green (mm)              |
+| `configMEASURING_STOP_MM`            | 1300          | Distance where LEDs turn off (RANGE + 100mm)                     |
+| `configMIN_APPROACH_SPEED_MM_S`      | -15           | Minimum approach speed to detect movement (mm/s)                 |
+| `configMEASURING_START_DELAY_MS`     | 300           | Delay to start measuring when still (ms)                         |
+| `configMEASURING_STOP_DELAY_MS`      | 7000          | Delay to stop measuring when still (ms)                          |
+| **LED Strip Configuration**          |               |                                                                  |
+| `configLED_NUMBER`                   | 40            | Number of LEDs in the strip                                      |
+| `configLED_PER_IRQ`                  | 8             | Number of LEDs processed per interrupt                           |
+| `configLED_BRIGHTNESS_WAIT_MS`       | 3000          | Wait time at max/min brightness before reversing (ms)            |
+| `configLED_BRIGHTNESS_SAVE_DELAY_MS` | 5000          | Delay to save brightness setting (ms)                            |
+| **LIDAR Configuration**              |               |                                                                  |
+| `configLIDAR_TIMING_BUDGET_MS`       | 200           | LIDAR timing budget (ms) [15,20,33,50,100,200,500]               |
+| `configLIDAR_RUN_IM_TIME_MS`         | 205           | Inter-measurement time when microcontroller is in RUN mode (ms)  |
+| `configLIDAR_STOP_IM_TIME_MS`        | 10000         | Inter-measurement time when microcontroller is in STOP mode (ms) |
+| **Button Configuration**             |               |                                                                  |
+| `configBUTTON_DEBOUNCING_MS`         | 50            | Button debouncing time (ms)                                      |
+| `configBUTTON_RESET_MS`              | 400           | Button press reset time (ms)                                     |
+| `configBUTTON_LONGPRESS_MS`          | 1000          | Button long-press time (ms)                                      |
+| `configBUTTON_VERYLONGPRESS_MS`      | 2000          | Button very-long-press time (ms)                                 |
+| **MovingAverage Configuration**      |               |                                                                  |
+| `configMOVAVG_LIDAR_SAMPLES`         | 2             | Number of samples for LIDAR moving average                       |
+| `configMOVAVG_APPSPEED_SAMPLES`      | 2             | Number of samples for approach speed moving average              |
 
 > [!NOTE]
 > Microcontroller clock frequency is reduced to 16 MHz to minimize idle consumption.
