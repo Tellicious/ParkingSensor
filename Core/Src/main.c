@@ -26,6 +26,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "VL53L1X_ULP_api.h"
 #include "VL53L1X_api.h"
 #include "basicMath.h"
 #include "button.h"
@@ -84,6 +85,8 @@ uint16_t brightnessSaveCnt = 0, brightnessWaitCnt = 0;
 void SystemClock_Config(void);
 
 /* USER CODE BEGIN PFP */
+void VL53L1X_InitRanging(void);
+void VL53L1X_InitULP(void);
 
 /* USER CODE END PFP */
 
@@ -355,8 +358,17 @@ int main(void) {
 #endif /* DEBUG */
                             VL53L1X_StopRanging(VL53L1X_dev);
                             if (wakeupMinDistance == wakeupMaxDistance) {
-                                /* Enable interrupt if data is below wakeupMaxDistance */
-                                VL53L1X_SetDistanceThreshold(VL53L1X_dev, wakeupMaxDistance, wakeupMaxDistance, 0, 0);
+                                /* Enable interrupt if data is below wakeupMaxDistance and start ULP mode */
+                                VL53L1X_ULP_SetInterruptConfiguration(VL53L1X_dev, wakeupMaxDistance, 1);
+                                VL53L1X_ULP_SetInterMeasurementInMs(VL53L1X_dev, configLIDAR_STOP_IM_TIME_MS);
+                                /* Increase the macro timing. This is equivalent as increasing the integration time */
+                                VL53L1X_ULP_SetMacroTiming(VL53L1X_dev, 200);
+                                VL53L1X_ULP_SetROI(VL53L1X_dev, 16);
+                                /* Relax some limits. Be careful, it can create false-positives !*/
+                                VL53L1X_ULP_SetSigmaThreshold(VL53L1X_dev, 60);
+                                VL53L1X_ULP_SetSignalThreshold(VL53L1X_dev, 1200);
+                                /* Start ranging */
+                                VL53L1X_ULP_StartRanging(VL53L1X_dev);
                             } else {
                                 /* Enable interrupt if data is smaller than wakeupMinDistance or larger than wakeupMaxDistance */
                                 VL53L1X_SetDistanceThreshold(VL53L1X_dev, wakeupMinDistance, wakeupMaxDistance, 2, 0);
@@ -379,10 +391,15 @@ int main(void) {
 #ifdef DEBUG
                             miniPrintf("Restarting\n");
 #endif /* DEBUG */
-                            /* Restore interrupt after wakeup */
+                            /* Restore usage of normal driver after wakeup */
                             VL53L1X_StopRanging(VL53L1X_dev);
-                            VL53L1X_SetDistanceThreshold(VL53L1X_dev, 0, 0, 0x20, 0);
-                            VL53L1X_SetInterMeasurementInMs(VL53L1X_dev, configLIDAR_RUN_IM_TIME_MS);
+                            VL53L1X_SensorInit(VL53L1X_dev);
+                            VL53L1X_SetDistanceMode(VL53L1X_dev, 2); /* 1=short, 2=long */
+                            VL53L1X_SetTimingBudgetInMs(VL53L1X_dev,
+                                                        configLIDAR_TIMING_BUDGET_MS); /* in ms possible values [15, 20, 33, 50, 100(default), 200, 500] */
+                            VL53L1X_SetInterMeasurementInMs(VL53L1X_dev, configLIDAR_RUN_IM_TIME_MS); /* in ms, IM must be >= TB+ 5ms, otherwise IM*2 */
+                            VL53L1X_SetROI(VL53L1X_dev, 16, 16);                                      /* minimum ROI 4,4 */
+                            VL53L1X_SetROICenter(VL53L1X_dev, 199);
                             VL53L1X_ClearInterrupt(VL53L1X_dev);
                             VL53L1X_drdy = 0;
                             VL53L1X_StartRanging(VL53L1X_dev);
@@ -478,6 +495,10 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef* htim) {
         smartLED_updateTransfer(&LEDstrip, SMARTLED_IRQ_FINISHED);
     }
 }
+
+void VL53L1X_InitRanging(void) {}
+
+void VL53L1X_InitULP(void) {}
 
 /* USER CODE END 4 */
 
