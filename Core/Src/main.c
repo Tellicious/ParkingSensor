@@ -398,11 +398,6 @@ int main(void) {
 #ifdef DEBUG
                     miniPrintf("LIDARstatus:%d\n", rangeStatus);
 #endif /* DEBUG */
-                    /* Turn off LEDs */
-                    smartLED_updateAllRGBColors(&LEDstrip, 0, 0, 0);
-                    while (smartLED_startTransfer(&LEDstrip) != SMARTLED_SUCCESS) {
-                        HAL_Delay(10);
-                    }
                 }
             }
         }
