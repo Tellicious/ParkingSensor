@@ -17,10 +17,10 @@ updates:
         interval: "weekly"
         day: "sunday"
     registries: "*"
-    target-branch: "main"
+    target-branch: "development"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "sunday"
-    target-branch: "main"
+    target-branch: "development"
