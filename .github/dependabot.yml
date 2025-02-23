@@ -21,6 +21,8 @@ updates:
         timezone: "UTC"
     registries: "*"
     target-branch: "development"
+    assignees:
+    - "Tellicious"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -30,6 +32,5 @@ updates:
       time: "02:00"
       timezone: "UTC"
     target-branch: "development"
-
-assignees:
-  - "Tellicious"
+    assignees:
+    - "Tellicious"
