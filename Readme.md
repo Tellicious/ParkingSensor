@@ -10,12 +10,13 @@ Programmable parking sensor that detects the distance from an approaching vehicl
 - 1 ST VL53L1X LIDAR/Time-of-Flight sensor
 - 1 WS2812B LED bar
 - 1 Push-button
+- 1 IRLZ34N MOSFET
 - 1 5V-3V3 step-down voltage regulator (optional, to power the microcontroller and the sensor without using the on-board regulator)
 > [!IMPORTANT]  
 > To power a 40-LEDs bar, a power supply of at least 5V-2A is needed
 
 ## Schematics
-![Schematics](Schematics/SchematicsImage.png)
+![Schematics](Schematics/SchematicsImage.jpg)
 
 ## Configuration
 Low-level configuration is performed via the following parameters, defined in `parkingConfig.h`:
