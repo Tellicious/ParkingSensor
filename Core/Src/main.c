@@ -157,6 +157,7 @@ int main(void) {
         HAL_Delay(2);
     }
     VL53L1X_SensorInit(VL53L1X_dev);
+    VL53L1X_StartTemperatureUpdate(VL53L1X_dev);                            /* Perform temperature calibration */
     VL53L1X_SetDistanceMode(VL53L1X_dev, 2);                                /* 1=short, 2=long */
     VL53L1X_SetTimingBudgetInMs(VL53L1X_dev, configLIDAR_TIMING_BUDGET_MS); /* in ms possible values [15, 20, 33, 50, 100(default), 200, 500] */
     VL53L1X_SetInterMeasurementInMs(VL53L1X_dev, configLIDAR_IM_TIME_MS);   /* in ms, IM must be >= TB+ 5ms, otherwise IM*2 */
@@ -346,10 +347,8 @@ int main(void) {
                             smartLED_startTransfer(&LEDstrip);
                         } else {
                             /* Show decreasing green bar */
-                            uint16_t LEDnr = (uint16_t)(roundf(
-                                configLED_NUMBER
-                                * fminf((float)(actualDistance - targetDistance - configMIN_DISTANCE_MM) / (configMEASURING_RANGE_MM - configMIN_DISTANCE_MM),
-                                        1)));
+                            uint16_t LEDnr =
+                                (uint16_t)(roundf(configLED_NUMBER * fminf((float)(actualDistance - targetDistance - configMIN_DISTANCE_MM) / (configMEASURING_RANGE_MM - configMIN_DISTANCE_MM), 1)));
                             for (uint16_t ii = 0; ii < configLED_NUMBER; ii++) {
                                 smartLED_updateColor(&LEDstrip, ii, SMARTLED_GREEN, (ii <= LEDnr) ? 0xFF : 0);
                                 smartLED_updateColor(&LEDstrip, ii, SMARTLED_RED, 0);
