@@ -10,17 +10,26 @@ registries:
     url: https://github.com
     username: x-access-token
     password: ${{secrets.PAT}}
+    
 updates:
   - package-ecosystem: "gitsubmodule"
     directory: /
     schedule:
         interval: "weekly"
         day: "sunday"
+        time: "02:00"
+        timezone: "UTC"
     registries: "*"
     target-branch: "development"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "sunday"
+      time: "02:00"
+      timezone: "UTC"
     target-branch: "development"
+
+assignees:
+  - "Tellicious"
