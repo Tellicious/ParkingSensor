@@ -59,10 +59,10 @@ extern "C" {
 #define configMEASURING_RANGE_MM           1200
 /* Distance from targetDistance in mm where LEDs turn off */
 #define configMEASURING_STOP_MM            (configMEASURING_RANGE_MM + 100)
+/* Distance change around current position that triggers an interrupt and wakes-up the sensor when still */
+#define configDISTANCE_WAKEUP_THRESHOLD_MM 20
 /* Minimum approach speed to sensor in mm/s to detect if something is approaching or not */
-#define configMIN_APPROACH_SPEED_MM_S      -15
-/* Delay in ms to turn on measuring when still */
-#define configMEASURING_START_DELAY_MS     300u
+#define configMIN_APPROACH_SPEED_MM_S      15
 /* Delay in ms to turn off measuring when still */
 #define configMEASURING_STOP_DELAY_MS      7000u
 
@@ -79,8 +79,10 @@ extern "C" {
 /* LIDAR configuration -------------------------------------------------------*/
 /* Timing budget in ms. Possible values [15, 20, 33, 50, 100(default), 200, 500] */
 #define configLIDAR_TIMING_BUDGET_MS       200
-/* Inter-measurement time in ms. IM must be >= TB + 5ms, otherwise TB*2 */
-#define configLIDAR_IM_TIME_MS             205
+/* Inter-measurement time in ms while microcontroller is in RUN mode. IM must be >= TB + 5ms, otherwise TB*2 */
+#define configLIDAR_RUN_IM_TIME_MS         205
+/* Inter-measurement time in ms while microcontroller is in STOP mode. IM must be >= TB + 5ms, otherwise TB*2 */
+#define configLIDAR_STOP_IM_TIME_MS        1000
 
 /* Button configuration ------------------------------------------------------*/
 /* Button debouncing time in ms */
@@ -96,7 +98,7 @@ extern "C" {
 /* Number of samples for LIDAR moving average */
 #define configMOVAVG_LIDAR_SAMPLES         2
 /* Number of samples for approach speed moving average */
-#define configMOVAVG_APPSPEED_SAMPLES      2
+#define configMOVAVG_APPSPEED_SAMPLES      3
 
 #ifdef __cplusplus
 }
