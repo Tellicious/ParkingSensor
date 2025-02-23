@@ -57,13 +57,18 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define USER_LED_Pin GPIO_PIN_13
-#define USER_LED_GPIO_Port GPIOC
-#define LED_STRIP_Pin GPIO_PIN_15
-#define LED_STRIP_GPIO_Port GPIOB
-#define BUTTON_Pin GPIO_PIN_4
-#define BUTTON_GPIO_Port GPIOB
-#define BUTTON_EXTI_IRQn EXTI4_IRQn
+#define USER_LED_Pin              GPIO_PIN_13
+#define USER_LED_GPIO_Port        GPIOC
+#define LED_STRIP_Pin             GPIO_PIN_15
+#define LED_STRIP_GPIO_Port       GPIOB
+#define LED_STRIP_POWER_Pin       GPIO_PIN_8
+#define LED_STRIP_POWER_GPIO_Port GPIOA
+#define BUTTON_Pin                GPIO_PIN_4
+#define BUTTON_GPIO_Port          GPIOB
+#define BUTTON_EXTI_IRQn          EXTI4_IRQn
+#define VL53L1X_INT_Pin           GPIO_PIN_5
+#define VL53L1X_INT_GPIO_Port     GPIOB
+#define VL53L1X_INT_EXTI_IRQn     EXTI9_5_IRQn
 
 /* USER CODE BEGIN Private defines */
 
