@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1
+**Improvements:**
+- Updated toolchain
+
 ## v2.0.0
 **New Features:**
 - HW change: Added LIDAR interrupt and MOSFET to control LED bar power
