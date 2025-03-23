@@ -31,6 +31,6 @@ updates:
       day: "sunday"
       time: "02:00"
       timezone: "UTC"
-    target-branch: "development"
+    target-branch: "main"
     assignees:
     - "Tellicious"

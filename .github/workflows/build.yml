@@ -14,7 +14,7 @@ jobs:
       uses: lewagon/wait-on-check-action@v1.3.4
       with:
         ref: ${{ github.head_ref || github.ref_name }}
-        check-name: 'CMSISUpdate'
+        check-regexp: CMSISUpdate.*
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         wait-interval: 10
   build:
